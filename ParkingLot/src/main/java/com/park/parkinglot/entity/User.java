@@ -47,4 +47,19 @@ public class User implements Serializable {
         this.id = id;
     }
 
+
+    //ca sa nu dea eroare in userbean, idk why :))
+
+    public String getUsername() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getEmail() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public String getPosition() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
