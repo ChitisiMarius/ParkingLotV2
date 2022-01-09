@@ -12,6 +12,9 @@
                     <li class="nav-item ${activatePage eq 'Cars' ? 'active' : ''}">
                         <a class="nav-link" href="${pageContext.request.contextPath}/Cars">Cars</a> 
                     </li>
+                    <li class="nav-item ${activatePage eq 'Users' ? 'active' : ''}">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Users">Users</a> 
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link also ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a>
                     </li>

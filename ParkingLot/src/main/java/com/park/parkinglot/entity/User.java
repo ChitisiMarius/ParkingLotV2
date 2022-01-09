@@ -35,8 +35,48 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Collection<Car> cars;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Collection<Car> cars) {
+        this.cars = cars;
     }
 
     public Integer getId() {
@@ -46,20 +86,5 @@ public class User implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
-    //ca sa nu dea eroare in userbean, idk why :))
-
-    public String getUsername() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String getPosition() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+  
 }
