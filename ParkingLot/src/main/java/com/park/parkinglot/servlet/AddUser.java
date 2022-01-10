@@ -4,13 +4,10 @@
  */
 package com.park.parkinglot.servlet;
 
-import com.park.parkinglot.common.CarDetails;
-import com.park.parkinglot.common.UserDetails;
-import com.park.parkinglot.ejb.CarBean;
 import com.park.parkinglot.ejb.UserBean;
+import com.park.parkinglot.util.PasswordUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
@@ -26,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"AdminRole"}))
-@WebServlet(name = "EditCar", urlPatterns = {"/EditCar"})
-public class EditCar extends HttpServlet {
+@WebServlet(name = "AddUser", urlPatterns = {"/AddUser"})
+public class AddUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,12 +37,7 @@ public class EditCar extends HttpServlet {
      */
 
     @Inject
-    UserBean userBean;
-    
-    @Inject
-    CarBean carBean;
-
-
+    private UserBean userBean;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,10 +46,10 @@ public class EditCar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditCar</title>");            
+            out.println("<title>Servlet AddUser</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditCar at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddUser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,14 +68,7 @@ public class EditCar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        List<UserDetails> users = userBean.getAllUsers();
-        request.setAttribute("users",users);
-        
-        int carId=Integer.parseInt(request.getParameter("id"));
-        CarDetails car=carBean.findbById(carId);
-        request.setAttribute("car", car);
-        
-        request.getRequestDispatcher("/WEB-INF/pages/editCar.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/pages/addUser.jsp").forward(request, response);
     }
 
     /**
@@ -97,14 +82,15 @@ public class EditCar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String licensePlate = request.getParameter("license_plate");
-        String parkingSpot = request.getParameter("parking_spot");
-        int ownerId = Integer.parseInt(request.getParameter("owner_id"));
-        int carId=Integer.parseInt(request.getParameter("car_id"));
-        
-        carBean.updateCar(carId, licensePlate,parkingSpot,ownerId);
-        
-        response.sendRedirect(request.getContextPath()+ "/Cars");
+        //processRequest(request, response);
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String position = request.getParameter("position");
+
+        String passwordSha256 = PasswordUtil.convertToSha256(password);
+        userBean.createUser(username, email, passwordSha256, position);
+        response.sendRedirect(request.getContextPath() + "/Users");
     }
 
     /**
