@@ -9,7 +9,7 @@
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Add Car</h4>
 
-        <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddCar">
+        <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/Cars/Create">
 
             <div class="row">
                 <div class="col-md-6 mb-3">

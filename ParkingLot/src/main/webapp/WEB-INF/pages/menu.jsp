@@ -25,13 +25,6 @@
                     <li class="nav-item">
                         <a class="nav-link also ${pageContext.request.requestURI eq '/ParkingLot/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-
                 </ul>
                 <ul class="navbar-nav d-flex">
                     <li class="nav-item">
